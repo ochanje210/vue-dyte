@@ -4,21 +4,78 @@
 
 [📖 **Release Notes**](./CHANGELOG.md)
 
-:warning: v2.x.x is for Vue 2. Vue 3 support will be on v3.x.x
+:warning: v2.x.x is for Vue 2. Vue 3 is supported with v3.x.x
 
-## Installaction
+## For Vue 3
 
-### With npm or yarn
+### Install
 
 ```bash
-npm i -S vue-dyte
+npm i -S vue-dyte@3.0.0
 
-yarn add vue-dyte
+yarn add vue-dyte@3.0.0
 ```
 
-## For Vue 2.0
+### Use
 
-### Typical Use
+```html
+<vue-dyte-client
+  :client-id="clientId"
+  :meeting-config="meetingConfig"
+  @init="onInit"
+  @error="onError"
+  @connect="onConnect"
+  @disconnect="onDisconnect"
+/>
+```
+
+```ts
+// typescript example
+import { defineComponent } from "vue";
+import { Meeting, VueDyteClient } from "vue-dyte";
+
+export default defineComponent({
+  components: {
+    VueDyteClient,
+  },
+  data() {
+    return {
+      clientId: '<your Dyte organization id>',
+      meetingConfig: {
+        roomName: '<room name>',
+        authToken: '<the participant authToken>',
+        // for more options, see here: https://docs.dyte.io/javascript/reference/meeting
+      }
+    }
+  }
+  methods: {
+    onInit(meeting: Meeting) {
+      console.log("onInit", meeting);
+    },
+    onError(e: any) {
+      console.error(e);
+    },
+    onConnect() {
+      console.log("connected");
+    },
+    onDisconnect() {
+      console.log("disconnected");
+    },
+  },
+});
+```
+
+## For Vue 2
+
+### Install
+
+```bash
+npm i -S vue-dyte@2.0.2
+
+yarn add vue-dyte@2.0.2
+```
+
+### Use
 
 ```html
 <vue-dyte-client
@@ -64,7 +121,7 @@ export default {
 }
 ```
 
-### Events
+## Events
 
 All Meeting events are supported:
 `connect`, `meetingJoined` , `localMediaConnected`, `disconnect`, `meetingEnded`, `participantJoin`, `participantLeave`, `chatMessage`, `roomMessage`, `message`, `activeSpeaker`, `recordingStarted`,

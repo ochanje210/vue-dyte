@@ -1,11 +1,14 @@
+import { App, Plugin } from "vue";
 
 // Import vue components
-import * as components from '@/lib-components/index';
+import * as components from "@/lib-components/index";
 
 // install function executed by Vue.use()
-const install = function installVueDyte(Vue) {
+const install: Exclude<Plugin["install"], undefined> = function installTest(
+  app: App
+) {
   Object.entries(components).forEach(([componentName, component]) => {
-    Vue.component(componentName, component);
+    app.component(componentName, component);
   });
 };
 
@@ -14,4 +17,4 @@ export default install;
 
 // To allow individual component use, export components
 // each can be registered via Vue.component()
-export * from '@/lib-components/index';
+export * from "@/lib-components/index";
