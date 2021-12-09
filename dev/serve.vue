@@ -1,18 +1,41 @@
-<script>
-import Vue from 'vue';
-// Uncomment import and local "components" registration if library is not registered globally.
-// import { VueDyteSample } from '@/entry.esm';
-
-export default Vue.extend({
-  name: 'ServeDev',
-  // components: {
-  //  VueDyteSample,
-  // }
-});
-</script>
-
 <template>
   <div id="app">
-    <vue-dyte-sample />
+    <vue-dyte-client
+      :client-id="''"
+      :meetingConfig="{
+        roomName: 'cegsvo-euxmvg',
+        authToken: '',
+      }"
+      @init="onInit"
+      @error="onError"
+      @connect="onConnect"
+      @disconnect="onDisconnect"
+    />
   </div>
 </template>
+
+<script>
+import Vue from "vue";
+import { VueDyteClient } from "@/entry.esm";
+
+export default Vue.extend({
+  name: "ServeDev",
+  components: {
+    VueDyteClient,
+  },
+  methods: {
+    onInit(meeting) {
+      console.log("onInit", meeting);
+    },
+    onError(e) {
+      console.error(e);
+    },
+    onConnect() {
+      console.log("connected");
+    },
+    onDisconnect() {
+      console.log("disconnected");
+    },
+  },
+});
+</script>
