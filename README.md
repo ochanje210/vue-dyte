@@ -11,9 +11,9 @@
 ### Install
 
 ```bash
-npm i -S vue-dyte@3.0.0
+npm i -S vue-dyte
 
-yarn add vue-dyte@3.0.0
+yarn add vue-dyte
 ```
 
 ### Use
