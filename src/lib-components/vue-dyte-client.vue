@@ -1,10 +1,14 @@
 <template>
   <div id="vue-dyte-client"></div>
 </template>
-<script>
+<script lang="ts">
+import { defineComponent, PropType } from "vue";
 import { loadHeadScript, loadHeadLink } from "./utils";
+import { Meeting, MeetingConfig } from "./type";
 
-export default {
+declare var DyteClient: any;
+
+export default defineComponent({
   name: "VueDyteClient",
   props: {
     clientId: {
@@ -12,7 +16,7 @@ export default {
       required: true,
     },
     meetingConfig: {
-      type: Object,
+      type: Object as PropType<MeetingConfig>,
       required: true,
     },
   },
@@ -22,6 +26,23 @@ export default {
   mounted() {
     this.initClient();
   },
+  emits: [
+    "init",
+    "error",
+    "connect",
+    "meetingJoined",
+    "localMediaConnected",
+    "disconnect",
+    "meetingEnded",
+    "participantJoin",
+    "participantLeave",
+    "chatMessage",
+    "roomMessage",
+    "message",
+    "activeSpeaker",
+    "recordingStarted",
+    "recordingStopped",
+  ],
   methods: {
     async initClient() {
       try {
@@ -29,15 +50,11 @@ export default {
           loadHeadScript("https://cdn.dyte.in/lib/dyte.js"),
           loadHeadLink("https://cdn.dyte.in/lib/dyte.css"),
         ]);
-
         const client = new DyteClient({ clientId: this.clientId });
-
-        const meeting = client.Meeting(this.meetingConfig);
+        const meeting = client.Meeting(this.meetingConfig) as Meeting;
         this.registerMeetingEvents(meeting);
-
         this.$emit("init", meeting);
-
-        meeting.onError((e) => {
+        meeting.onError((e: any) => {
           this.$emit("error", e);
         });
         meeting.init("vue-dyte-client");
@@ -45,7 +62,7 @@ export default {
         this.$emit("error", e);
       }
     },
-    registerMeetingEvents(meeting) {
+    registerMeetingEvents(meeting: Meeting) {
       const {
         connect,
         meetingJoined,
@@ -103,7 +120,7 @@ export default {
       });
     },
   },
-};
+});
 </script>
 <style>
 @import "https://cdn.dyte.in/lib/dyte.css";

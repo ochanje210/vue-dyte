@@ -3,7 +3,7 @@
     <vue-dyte-client
       :client-id="''"
       :meetingConfig="{
-        roomName: 'cegsvo-euxmvg',
+        roomName: '',
         authToken: '',
       }"
       @init="onInit"
@@ -14,20 +14,20 @@
   </div>
 </template>
 
-<script>
-import Vue from "vue";
-import { VueDyteClient } from "@/entry.esm";
+<script lang="ts">
+import { defineComponent } from "vue";
+import { Meeting, VueDyteClient } from "@/entry.esm";
 
-export default Vue.extend({
+export default defineComponent({
   name: "ServeDev",
   components: {
     VueDyteClient,
   },
   methods: {
-    onInit(meeting) {
+    onInit(meeting: Meeting) {
       console.log("onInit", meeting);
     },
-    onError(e) {
+    onError(e: any) {
       console.error(e);
     },
     onConnect() {

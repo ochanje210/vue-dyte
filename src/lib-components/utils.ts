@@ -1,4 +1,4 @@
-export function loadHeadScript(src) {
+export function loadHeadScript(src: string): Promise<void> {
   return new Promise((resolve, reject) => {
     if (document.querySelector(`script[src='${src}']`)) {
       return;
@@ -17,7 +17,7 @@ export function loadHeadScript(src) {
   });
 }
 
-export function loadHeadLink(href) {
+export function loadHeadLink(href: string): Promise<void> {
   return new Promise((resolve, reject) => {
     if (document.querySelector(`link[href='${href}']`)) {
       return;
