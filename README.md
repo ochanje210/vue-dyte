@@ -22,6 +22,7 @@ yarn add vue-dyte
 <vue-dyte-client
   :client-id="clientId"
   :meeting-config="meetingConfig"
+  :ui-config="uiConfig"
   @init="onInit"
   @error="onError"
   @connect="onConnect"
@@ -45,6 +46,10 @@ export default defineComponent({
         roomName: '<room name>',
         authToken: '<the participant authToken>',
         // for more options, see here: https://docs.dyte.io/javascript/reference/meeting
+      },
+      uiConfig: {
+        header: true,
+        // for more UI options, see here: https://docs.dyte.io/javascript/reference/dyte-ui-config/ 
       }
     }
   }
@@ -70,9 +75,9 @@ export default defineComponent({
 ### Install
 
 ```bash
-npm i -S vue-dyte@2.0.2
+npm i -S vue-dyte@2.0.3
 
-yarn add vue-dyte@2.0.2
+yarn add vue-dyte@2.0.3
 ```
 
 ### Use
@@ -81,6 +86,7 @@ yarn add vue-dyte@2.0.2
 <vue-dyte-client
   :client-id="clientId"
   :meeting-config="meetingConfig"
+  :ui-config="uiConfig"
   @init="onInit"
   @error="onError"
   @connect="onConnect"
@@ -102,6 +108,10 @@ export default {
         roomName: '<room name>',
         authToken: '<the participant authToken>',
         // for more options, see here: https://docs.dyte.io/javascript/reference/meeting
+      },
+      uiConfig: {
+        header: true,
+        // for more UI options, see here: https://docs.dyte.io/javascript/reference/dyte-ui-config/ 
       }
     }
   }

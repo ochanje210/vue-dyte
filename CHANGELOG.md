@@ -8,6 +8,12 @@ All notable changes to this project will be documented in this file. See [standa
 
 - supports UI Config Options
 
+<a name="2.0.3"></a>
+
+## 2.0.3 (2021-12-31)
+
+- supports UI Config Options for Vue 2
+
 <a name="3.0.0"></a>
 
 ## 3.0.0 (2021-12-09)
