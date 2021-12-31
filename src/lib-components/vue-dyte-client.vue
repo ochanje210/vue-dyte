@@ -15,6 +15,10 @@ export default {
       type: Object,
       required: true,
     },
+    uiConfig: {
+      type: Object,
+      default: () => {},
+    },
   },
   data() {
     return {};
@@ -31,8 +35,8 @@ export default {
         ]);
 
         const client = new DyteClient({ clientId: this.clientId });
+        const meeting = client.Meeting(this.meetingConfig, this.uiConfig);
 
-        const meeting = client.Meeting(this.meetingConfig);
         this.registerMeetingEvents(meeting);
 
         this.$emit("init", meeting);

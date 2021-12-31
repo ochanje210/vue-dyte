@@ -3,8 +3,11 @@
     <vue-dyte-client
       :client-id="''"
       :meetingConfig="{
-        roomName: 'cegsvo-euxmvg',
+        roomName: '',
         authToken: '',
+      }"
+      :uiConfig="{
+        header: false,
       }"
       @init="onInit"
       @error="onError"
