@@ -6,6 +6,9 @@
         roomName: '',
         authToken: '',
       }"
+      :uiConfig="{
+        header: false,
+      }"
       @init="onInit"
       @error="onError"
       @connect="onConnect"

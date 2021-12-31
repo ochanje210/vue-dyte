@@ -4,7 +4,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
 import { loadHeadScript, loadHeadLink } from "./utils";
-import { Meeting, MeetingConfig } from "./type";
+import { Meeting, MeetingConfig, UIConfigTypes } from "./type";
 
 declare var DyteClient: any;
 
@@ -18,6 +18,10 @@ export default defineComponent({
     meetingConfig: {
       type: Object as PropType<MeetingConfig>,
       required: true,
+    },
+    uiConfig: {
+      type: Object as PropType<UIConfigTypes>,
+      default: () => {},
     },
   },
   data() {
@@ -51,9 +55,14 @@ export default defineComponent({
           loadHeadLink("https://cdn.dyte.in/lib/dyte.css"),
         ]);
         const client = new DyteClient({ clientId: this.clientId });
-        const meeting = client.Meeting(this.meetingConfig) as Meeting;
+        const meeting = client.Meeting(
+          this.meetingConfig,
+          this.uiConfig
+        ) as Meeting;
+
         this.registerMeetingEvents(meeting);
         this.$emit("init", meeting);
+
         meeting.onError((e: any) => {
           this.$emit("error", e);
         });

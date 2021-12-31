@@ -461,4 +461,4 @@ enum DyteErrors {
   MEETING_NOTFOUND = "MEETING_NOTFOUND",
 }
 
-export { MeetingConfig, DyteErrors, Meeting };
+export { MeetingConfig, DyteErrors, Meeting, UIConfigTypes };
